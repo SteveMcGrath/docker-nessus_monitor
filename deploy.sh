@@ -14,10 +14,10 @@ PATCH=$(echo ${VERSION} | cut -d '.' -f 3)
 
 echo "Discovered Nessus Version ${VERSION} = ${MAJOR}.${MINOR}.${PATCH}"
 
-docker tag nessus_scanner:latest ${RPRE}/${RNAME}:${MAJOR}
-docker tag nessus_scanner:latest ${RPRE}/${RNAME}:${MAJOR}.${MINOR}
-docker tag nessus_scanner:latest ${RPRE}/${RNAME}:${MAJOR}.${MINOR}.${PATCH}
-docker tag nessus_scanner:latest ${RPRE}/${RNAME}:latest
+docker tag nnm:latest ${RPRE}/${RNAME}:${MAJOR}
+docker tag nnm:latest ${RPRE}/${RNAME}:${MAJOR}.${MINOR}
+docker tag nnm:latest ${RPRE}/${RNAME}:${MAJOR}.${MINOR}.${PATCH}
+docker tag nnm:latest ${RPRE}/${RNAME}:latest
 
 echo "Images to be pushed: "                      \
   "${RPRE}/${RNAME}:${MAJOR}, "                   \
