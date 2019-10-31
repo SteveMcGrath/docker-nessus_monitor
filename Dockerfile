@@ -15,20 +15,16 @@ ENV MONITOR_INTERFACE ""
 ENV ADMIN_PASS ""
 ENV LICENSE ""
 
-COPY nessus.sh /usr/bin
-COPY download.py /tmp
-COPY supervisor.conf /etc
+COPY nessus.sh /usr/bin/
+COPY yum.repo /etc/yum.repos.d/Tenable.repo
+COPY gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-Tenable
 
-RUN chmod 755 /usr/bin/nessus.sh									\
-	&& python /tmp/download.py										\
-	&& yum -y -q install epel-release 								\
-	&& yum -y -q install /tmp/NessusMonitor.rpm supervisor iproute	\
-	&& yum -y -q clean all											\
-	&& chmod 755 /usr/bin/nessus.sh									\
-	&& rm -f /tmp/NessusMonitor.rpm									\
-	&& rm -f /tmp/*
+RUN    yum -y update                                                    \
+    && yum -y install nnm                                               \
+    && yum -y clean all                                                 \
+    && chmod 755 /usr/bin/nessus.sh                                     \
+    && echo -e "export PATH=$PATH:/opt/nnm/bin" >> /etc/bashrc
 
-VOLUME /opt/pvs/var/pvs
 EXPOSE 8835
 
-CMD ["/usr/bin/supervisord", "-nc", "/etc/supervisor.conf"]
+CMD ["/usr/bin/nessus.sh"]

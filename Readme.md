@@ -5,6 +5,8 @@ Tenable's Nessus Network Monitor is a passive sniffer that looks to discover hos
 * [Nessus Network Monitor product page](http://www.tenable.com/products/nessus-network-monitor)
 * [Nessus Network Monitor latest docs](https://docs.tenable.com/pvs/Content/AboutPVS.htm)
 
+Please note that as this is a network sniffer, you will either need to attach a second interface with mirrored traffic or run the container in privileged mode to listen to the physical interface.
+
 # Build files
 
 The github repository for the build files is located [here](https://github.com/stevemcgrath/docker-nessus_monitor).
@@ -36,7 +38,7 @@ docker start nessus_monitor
 * **MANAGER_HOST** _(optional)_ - Nessus Manager address
 * **MANAGER_PORT** _(optional)_ - Nessus Manager service port
 * **PROXY_HOST** _(optional)_ - Proxy address
-* **PROXY_PORT** _(optional)_ - Proxy service port 
+* **PROXY_PORT** _(optional)_ - Proxy service port
 * **PROXY_USER** _(optional)_ - Proxy account username
 * **PROXY_PASS** _(optional)_ - Proxy account password
 * **PROXY_AGENT** _(optional)_ - Proxy agent string
