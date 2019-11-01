@@ -1,6 +1,9 @@
 #!/bin/bash
 
 function config_scanner {
+    # By default, the NNM Name should be set to the container id.
+    /opt/nnm/bin/nnm --config "NNM Name" "$(hostname)"
+
 	[ -n "${SCANNER_NAME}"      ] && /opt/nnm/bin/nnm --config "NNM Name" "${SCANNER_NAME}"
 	[ -n "${PROXY_HOST}"        ] && /opt/nnm/bin/nnm --config "Web Proxy Host" "${PROXY_HOST}"
 	[ -n "${PROXY_PORT}"        ] && /opt/nnm/bin/nnm --config "Web Proxy Port" "${PROXY_PORT}"
